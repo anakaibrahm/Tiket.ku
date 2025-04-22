@@ -1,0 +1,97 @@
+.page-container {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+.match-schedule-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto 1fr;
+}
+
+.match-schedule-card:hover {
+  .left,
+  .right {
+    background-color: #9b9696;
+    transition: all 0.3s ease-in-out;
+  }
+  .mid {
+    background-color: #d9d9d9;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.right {
+  grid-column: 3;
+}
+
+.left,
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #d9d9d9;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.team-logo-1 {
+  width: 55%;
+  height: auto;
+}
+
+.team-logo-2 {
+  width: 50%;
+  height: auto;
+}
+
+.mid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #9b9696;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.bot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  grid-row: 3;
+  grid-column: 1 / 4;
+}
+
+.team-name-1,
+.team-name-2 {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.match-time,
+.match-time-zone {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.match-date {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.match-stadium {
+  font-size: 0.7rem;
+  font-weight: 400;
+}
