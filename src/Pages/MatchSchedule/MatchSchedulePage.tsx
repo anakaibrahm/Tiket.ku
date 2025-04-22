@@ -1,25 +1,51 @@
 import styles from "./MatchSchedulePage.module.css";
-import IndonesianLogo from "../../assets/IndonesiaFootballLogo.png";
-import BahrainLogo from "../../assets/BahrainFootballLogo.png";
+import { useState, useEffect } from "react";
 import MatchScheduleCard from "./components/MatchScheduleCard";
+import { v4 as uuidv4 } from "uuid";
+
+interface Team {
+  name: string;
+  logo: string;
+}
+
+interface Match {
+  id: string;
+  team1: Team;
+  team2: Team;
+  matchTime: string;
+  timeZone: string;
+  matchDate: string;
+  stadium: string;
+}
 
 const MatchSchedulePage = () => {
+  const [matchScheduleData, setMatchScheduleData] = useState<Match[]>([]);
+
+  useEffect(() => {
+    fetch("/public/data/matchSchedule.json")
+      .then((response) => response.json())
+      .then((data: Match[]) => {
+        const dataWithIds = data.map((match) => ({
+          ...match,
+          id: uuidv4(),
+        }));
+        setMatchScheduleData(dataWithIds);
+      });
+  }, []);
+
   return (
     <main className={styles["page-container"]}>
-      <MatchScheduleCard
-        team1={{
-          name: "Indonesia",
-          logo: IndonesianLogo,
-        }}
-        team2={{
-          name: "Bahrain",
-          logo: BahrainLogo,
-        }}
-        matchTime="20:00"
-        timeZone="WIB"
-        matchDate="25 September 2023"
-        stadium="Stadion Gelora Bung Karno"
-      />
+      {matchScheduleData.map((match) => (
+        <MatchScheduleCard
+          key={match.id}
+          team1={match.team1}
+          team2={match.team2}
+          matchTime={match.matchTime}
+          timeZone={match.timeZone}
+          matchDate={match.matchDate}
+          stadium={match.stadium}
+        />
+      ))}
     </main>
   );
 };

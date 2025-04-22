@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "team1": {
+      "name": "Indonesia",
+      "logo": "/src/assets/IndonesiaFootballLogo.png"
+    },
+    "team2": {
+      "name": "Bahrain",
+      "logo": "/src/assets/BahrainFootballLogo.png"
+    },
+    "matchTime": "20:00",
+    "timeZone": "WIB",
+    "matchDate": "Selasa, 25 Maret 2025",
+    "stadium": "Stadion Glora Bung Karno"
+  }
+]
