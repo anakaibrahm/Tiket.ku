@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "matchId": "bc4e37aa-f34c-4791-8da5-ee5b98b3fb6c",
     "team1": {
       "name": "Indonesia",
       "logo": "/src/assets/IndonesiaFootballLogo.png"
@@ -12,6 +13,22 @@
     "matchTime": "20:00",
     "timeZone": "WIB",
     "matchDate": "Selasa, 25 Maret 2025",
-    "stadium": "Stadion Glora Bung Karno"
+    "stadium": "Stadion Glora Bung Karno",
+    "tickets": [
+      "VIP Barat",
+      "VIP Timur",
+      "Garuda Barat",
+      "Garuda Timur",
+      "Garuda Utara",
+      "Garuda Selatan"
+    ],
+    "ticketsAvailable": {
+      "VIP Barat": { "available": "100", "price": "1.250.000" },
+      "VIP Timur": { "available": "90", "price": "1.250.000" },
+      "Garuda Barat": { "available": "25", "price": "550.000" },
+      "Garuda Timur": { "available": "5", "price": "550.000" },
+      "Garuda Utara": { "available": "10", "price": "350.000" },
+      "Garuda Selatan": { "available": "2", "price": "350.000" }
+    }
   }
 ]

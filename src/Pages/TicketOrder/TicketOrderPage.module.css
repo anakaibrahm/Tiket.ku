@@ -59,3 +59,8 @@
 .ticket-order-button:hover {
   background-color: #0056b3;
 }
+
+.section-8 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
