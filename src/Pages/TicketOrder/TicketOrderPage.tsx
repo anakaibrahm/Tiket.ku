@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./TicketOrderPage.module.css";
-import { FetchJSONData } from "../../hooks/FetchJSONData";
+import { MatchData } from "../../hooks/MatchData";
 
 interface FormData {
   fullName: string;
@@ -14,7 +14,9 @@ interface FormData {
 }
 
 const TicketOrderPage: React.FC = () => {
-  const { matchId } = useParams<{ matchId: string }>();
+  const { matchId } = useParams<{
+    matchId: string;
+  }>();
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     gender: "",
@@ -25,13 +27,17 @@ const TicketOrderPage: React.FC = () => {
     numberOfTickets: 1, // Nilai default
   });
   const [selectedTicket, setSelectedTicket] = useState<string>("");
-  const { ticketsData, ticketsAvailable } = FetchJSONData(matchId);
+  const { matchTicketData } = MatchData(matchId);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+
+    if (name === "Tribun") {
+      setSelectedTicket(value);
+    }
 
     if (name === "Tribun") {
       setSelectedTicket(value);
@@ -45,16 +51,16 @@ const TicketOrderPage: React.FC = () => {
     alert("Pemesanan Anda sedang diproses!");
   };
 
-  const selectedTicketAvailability = ticketsAvailable.find(
+  const selectedTicketAvailability = matchTicketData.find(
     (ticket) => ticket.ticket === selectedTicket
   );
 
-  const selectedTicketPrice = ticketsAvailable.find(
+  const selectedTicketPrice = matchTicketData.find(
     (ticket) => ticket.ticket === selectedTicket
   )?.price;
 
   return (
-    <main className={styles["ticket-order-container"]}>
+    <main className={styles["page-container"]}>
       <form onSubmit={handleSubmit} className={styles["ticket-order-form"]}>
         <section>
           <label
@@ -79,7 +85,6 @@ const TicketOrderPage: React.FC = () => {
           <input
             type="text"
             id="NIK"
-            name="NIK"
             value={formData.NIK}
             onChange={handleChange}
             className={styles["ticket-order-input"]}
@@ -90,8 +95,13 @@ const TicketOrderPage: React.FC = () => {
           <label htmlFor="gender" className={styles["ticket-order-label"]}>
             Jenis Kelamin
           </label>
-          <select className={styles["ticket-order-input"]}>
-            <option value="" selected disabled>
+          <select
+            className={styles["ticket-order-input"]}
+            name="gender"
+            value={formData.gender}
+            onChange={handleChange}
+          >
+            <option value="" disabled>
               -- Please select an option --
             </option>
             <option value="lakilaki">Laki-Laki</option>
@@ -136,20 +146,14 @@ const TicketOrderPage: React.FC = () => {
             value={formData.Tribun}
             onChange={handleChange}
           >
-            <option value="" selected disabled>
+            <option value="" disabled>
               -- Please select an option --
             </option>
-            {ticketsData.flat().map((ticket, index) => (
-              <option key={index} value={ticket}>
-                {ticket}
+            {matchTicketData.flat().map((ticket, index) => (
+              <option key={index} value={ticket.ticket}>
+                {ticket.ticket}
               </option>
             ))}
-            {/* <option value="VIP1">VIP Barat</option>
-            <option value="VIP2">VIP Timur</option>
-            <option value="Garuda1">Garuda Barat</option>
-            <option value="Garuda2">Garuda Timur</option>
-            <option value="Garuda3">Garuda Utara</option>
-            <option value="Garuda4">Garuda Selatan</option> */}
           </select>
         </section>
         <section>
@@ -171,18 +175,18 @@ const TicketOrderPage: React.FC = () => {
           />
         </section>
         <section className={styles["section-8"]}>
-          <h2>
+          <h2 className={styles["ticket-available"]}>
             {selectedTicket
               ? selectedTicketAvailability?.available
                 ? `${selectedTicketAvailability.available} ticket tersedia`
                 : "Data tidak tersedia"
               : null}
           </h2>
-          <h2>
+          <h2 className={styles["ticket-price"]}>
             {" "}
             {selectedTicket
               ? selectedTicketPrice
-                ? `Harga: Rp ${selectedTicketPrice}`
+                ? `Rp ${selectedTicketPrice}`
                 : "Harga tidak tersedia"
               : null}
           </h2>
