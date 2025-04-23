@@ -38,6 +38,10 @@ const TicketOrderPage: React.FC = () => {
     if (name === "Tribun") {
       setSelectedTicket(value);
     }
+
+    if (name === "Tribun") {
+      setSelectedTicket(value);
+    }
   };
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -81,7 +85,6 @@ const TicketOrderPage: React.FC = () => {
           <input
             type="text"
             id="NIK"
-            name="NIK"
             value={formData.NIK}
             onChange={handleChange}
             className={styles["ticket-order-input"]}
