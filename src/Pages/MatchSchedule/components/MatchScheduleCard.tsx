@@ -14,6 +14,7 @@ interface MatchScheduleCard {
   timeZone: string;
   matchDate: string;
   stadium: string;
+  onClick?: () => void;
 }
 
 const MatchScheduleCard: React.FC<MatchScheduleCard> = ({
@@ -23,9 +24,10 @@ const MatchScheduleCard: React.FC<MatchScheduleCard> = ({
   timeZone,
   matchDate,
   stadium,
+  onClick,
 }) => {
   return (
-    <div className={styles["match-schedule-card"]}>
+    <div className={styles["match-schedule-card"]} onClick={onClick}>
       <section className={styles["left"]}>
         <h2 className={styles["team-name-1"]}>{team1.name}</h2>
         <img className={styles["team-logo-1"]} src={team1.logo} alt="" />

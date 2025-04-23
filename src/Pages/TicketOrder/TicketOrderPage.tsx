@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import styles from "./TicketOrderPage.module.css";
+import { FetchJSONData } from "../../hooks/FetchJSONData";
 
 interface FormData {
   fullName: string;
@@ -12,6 +14,7 @@ interface FormData {
 }
 
 const TicketOrderPage: React.FC = () => {
+  const { matchId } = useParams<{ matchId: string }>();
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     gender: "",
@@ -21,12 +24,18 @@ const TicketOrderPage: React.FC = () => {
     Tribun: "",
     numberOfTickets: 1, // Nilai default
   });
+  const [selectedTicket, setSelectedTicket] = useState<string>("");
+  const { ticketsData, ticketsAvailable } = FetchJSONData(matchId);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+
+    if (name === "Tribun") {
+      setSelectedTicket(value);
+    }
   };
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -36,10 +45,18 @@ const TicketOrderPage: React.FC = () => {
     alert("Pemesanan Anda sedang diproses!");
   };
 
+  const selectedTicketAvailability = ticketsAvailable.find(
+    (ticket) => ticket.ticket === selectedTicket
+  );
+
+  const selectedTicketPrice = ticketsAvailable.find(
+    (ticket) => ticket.ticket === selectedTicket
+  )?.price;
+
   return (
     <main className={styles["ticket-order-container"]}>
       <form onSubmit={handleSubmit} className={styles["ticket-order-form"]}>
-        <div>
+        <section>
           <label
             htmlFor="fullName"
             className={styles["ticket-order-label"]}
@@ -54,37 +71,34 @@ const TicketOrderPage: React.FC = () => {
             required
             className={styles["ticket-order-input"]}
           />
-        </div>
-        <div>
-          <label
-            htmlFor="identificationNumber"
-            className={styles["ticket-order-label"]}
-          >
+        </section>
+        <section>
+          <label htmlFor="NIK" className={styles["ticket-order-label"]}>
             NIK
           </label>
           <input
             type="text"
-            id="identificationNumber"
-            name="identificationNumber"
+            id="NIK"
+            name="NIK"
             value={formData.NIK}
             onChange={handleChange}
             className={styles["ticket-order-input"]}
             required
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label htmlFor="gender" className={styles["ticket-order-label"]}>
             Jenis Kelamin
           </label>
           <select className={styles["ticket-order-input"]}>
-            <option value="lakilaki" selected disabled>
+            <option value="" selected disabled>
               -- Please select an option --
             </option>
             <option value="lakilaki">Laki-Laki</option>
             <option value="perempuan">Perempuan</option>
           </select>
-        </div>
-        <div>
+        </section>
+        <section>
           <label htmlFor="email" className={styles["ticket-order-label"]}>
             Email
           </label>
@@ -97,8 +111,8 @@ const TicketOrderPage: React.FC = () => {
             required
             className={styles["ticket-order-input"]}
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label htmlFor="phoneNumber" className={styles["ticket-order-label"]}>
             Nomor Telepon
           </label>
@@ -111,24 +125,34 @@ const TicketOrderPage: React.FC = () => {
             className={styles["ticket-order-input"]}
             required
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label htmlFor="match" className={styles["ticket-order-label"]}>
             Tribun
           </label>
-          <select className={styles["ticket-order-input"]}>
-            <option value="VIP1" selected disabled>
+          <select
+            className={styles["ticket-order-input"]}
+            name="Tribun"
+            value={formData.Tribun}
+            onChange={handleChange}
+          >
+            <option value="" selected disabled>
               -- Please select an option --
             </option>
-            <option value="VIP1">VIP Barat</option>
+            {ticketsData.flat().map((ticket, index) => (
+              <option key={index} value={ticket}>
+                {ticket}
+              </option>
+            ))}
+            {/* <option value="VIP1">VIP Barat</option>
             <option value="VIP2">VIP Timur</option>
             <option value="Garuda1">Garuda Barat</option>
             <option value="Garuda2">Garuda Timur</option>
             <option value="Garuda3">Garuda Utara</option>
-            <option value="Garuda4">Garuda Selatan</option>
+            <option value="Garuda4">Garuda Selatan</option> */}
           </select>
-        </div>
-        <div>
+        </section>
+        <section>
           <label
             htmlFor="numberOfTickets"
             className={styles["ticket-order-label"]}
@@ -145,7 +169,24 @@ const TicketOrderPage: React.FC = () => {
             required
             className={styles["ticket-order-input"]}
           />
-        </div>
+        </section>
+        <section className={styles["section-8"]}>
+          <h2>
+            {selectedTicket
+              ? selectedTicketAvailability?.available
+                ? `${selectedTicketAvailability.available} ticket tersedia`
+                : "Data tidak tersedia"
+              : null}
+          </h2>
+          <h2>
+            {" "}
+            {selectedTicket
+              ? selectedTicketPrice
+                ? `Harga: Rp ${selectedTicketPrice}`
+                : "Harga tidak tersedia"
+              : null}
+          </h2>
+        </section>
         <button type="submit" className={styles["ticket-order-button"]}>
           Pesan Tiket
         </button>
