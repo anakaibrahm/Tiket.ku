@@ -6,7 +6,7 @@
   height: 100vh;
 }
 
-.ticket-order-form {
+.form-container {
   /* height: 100%; */
   width: 50%;
   display: grid;
@@ -21,24 +21,53 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.ticket-order-label {
-  display: flex;
-  justify-content: flex-start;
+.section-5 {
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  grid-template-areas:
+    "top top top"
+    "left mid right";
+}
+
+.section-8 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.form-label {
   font-size: 16px;
   margin-bottom: 8px;
   color: #333;
 }
 
-.ticket-order-input {
+.form-label-5 {
+  grid-column: span 3;
+}
+
+.form-input {
   width: 100%;
   padding: 10px;
-  margin: 8px 0 16px;
+  margin: 8px 0 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
 }
 
-.ticket-order-button {
+.form-input-5 {
+  margin: auto;
+  /* width: 50%; */
+  grid-area: mid;
+  text-align: center;
+  height: 2.5rem;
+  width: 90%;
+}
+
+.form-error-message {
+  font-size: 0.8rem;
+  color: red;
+}
+
+.form-button {
   display: flex;
   justify-content: center;
   margin: 0 auto;
@@ -54,23 +83,28 @@
   grid-area: span 2 / span 2;
 }
 
-.ticket-order-button:hover {
+.form-button:hover {
   background-color: #0056b3;
 }
 
-.section-8 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.ticket-available {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.button:hover {
+  background-color: #0056b3;
 }
 
-.ticket-price {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.button-increase {
+  grid-area: right;
+}
+
+.button-decrease {
+  grid-area: left;
 }
