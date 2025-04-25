@@ -27,7 +27,7 @@ const MatchScheduleCard: React.FC<MatchScheduleCard> = ({
   onClick,
 }) => {
   return (
-    <div className={styles["match-schedule-card"]} onClick={onClick}>
+    <div className={styles["schedule-container"]} onClick={onClick}>
       <section className={styles["left"]}>
         <h2 className={styles["team-name-1"]}>{team1.name}</h2>
         <img className={styles["team-logo-1"]} src={team1.logo} alt="" />
@@ -40,7 +40,7 @@ const MatchScheduleCard: React.FC<MatchScheduleCard> = ({
         <h2 className={styles["team-name-2"]}>{team2.name}</h2>
         <img className={styles["team-logo-2"]} src={team2.logo} alt="" />
       </section>
-      <section className={styles["bot"]}>
+      <section className={styles["bottom"]}>
         <h2 className={styles["match-date"]}>{matchDate}</h2>
         <p className={styles["match-stadium"]}>{stadium}</p>
       </section>

@@ -7,13 +7,13 @@
   gap: 1rem;
 }
 
-.match-schedule-card {
+.schedule-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto 1fr;
 }
 
-.match-schedule-card:hover {
+.schedule-container:hover {
   .left,
   .right {
     background-color: #9b9696;
@@ -61,7 +61,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.bot {
+.bottom {
   display: flex;
   justify-content: center;
   align-items: center;
