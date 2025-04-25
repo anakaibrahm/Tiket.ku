@@ -1,6 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import MatchSchedule from "./Pages/MatchSchedule/MatchSchedulePage";
-import TicketOrderPage from "./Pages/TicketOrder/TicketOrderPage";
+import OrderForm from "./Pages/OrderForm/OrderFormPage";
 import "./Styles/Global.css";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<MatchSchedule />} />
-        <Route path="/ticket-order/:MatchId" element={<TicketOrderPage />} />
+        <Route path="/ticket-order/:MatchId" element={<OrderForm />} />
       </Routes>
     </Router>
   );
