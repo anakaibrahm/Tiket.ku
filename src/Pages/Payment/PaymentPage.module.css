@@ -1,0 +1,71 @@
+.page-container {
+  height: 100vh;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.container {
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.payment-container {
+  /* height: auto; */
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.page-container h3 {
+  text-transform: uppercase;
+}
+
+.paymentDetails {
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.cardInputContainer {
+  display: flex;
+  gap: 10px; /* Jarak antar input */
+}
+
+.input {
+  width: 100%;
+  padding: 10px; /* Tambahkan padding untuk memberikan ruang */
+  border: 1px solid #ccc; /* Border untuk input */
+  border-radius: 4px;
+  font-size: 16px; /* Ukuran font yang sesuai */
+  text-align: center; /* Rata tengah untuk angka */
+}
+
+.input::placeholder {
+  color: #aaa; /* Warna placeholder */
+}
+
+.submitButton {
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #218838;
+}
