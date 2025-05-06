@@ -1,28 +1,28 @@
 import styles from "./MatchSchedulePage.module.css";
 import MatchScheduleCard from "./components/MatchScheduleCard";
 import { useNavigate } from "react-router-dom";
-import { MatchData } from "../../hooks/MatchData";
+import { GetData } from "../../api/datas";
 
 const MatchSchedulePage = () => {
-  const { matchScheduleData } = MatchData();
+  const { datas } = GetData();
   const navigate = useNavigate();
 
-  const handleCardClick = (matchId: string) => {
-    navigate(`/ticket-order/${matchId}`);
+  const handleCardClick = () => {
+    navigate(`/order-form`);
   };
 
   return (
     <main className={styles["page-container"]}>
-      {matchScheduleData.map((matchScheduleData) => (
+      {datas.map((data) => (
         <MatchScheduleCard
-          key={matchScheduleData.matchId}
-          team1={matchScheduleData.team1}
-          team2={matchScheduleData.team2}
-          matchTime={matchScheduleData.matchTime}
-          timeZone={matchScheduleData.timeZone}
-          matchDate={matchScheduleData.matchDate}
-          stadium={matchScheduleData.stadium}
-          onClick={() => handleCardClick(matchScheduleData.matchId)}
+          key={data.matchId}
+          team1={data.team1}
+          team2={data.team2}
+          matchTime={data.matchTime}
+          timeZone={data.timeZone}
+          matchDate={data.matchDate}
+          stadium={data.stadium}
+          onClick={() => handleCardClick()}
         />
       ))}
     </main>

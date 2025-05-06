@@ -7,7 +7,7 @@
   gap: 1.5rem;
 }
 
-.container {
+.details-container {
   max-width: 600px;
   padding: 20px;
   border: 1px solid #ccc;
@@ -26,17 +26,10 @@
   text-transform: uppercase;
 }
 
-.paymentDetails {
-  margin-bottom: 20px;
-}
-
-.form {
+.payment-form {
   display: flex;
   flex-direction: column;
-}
-
-.formGroup {
-  margin-bottom: 15px;
+  gap: 1rem;
 }
 
 .cardInputContainer {
@@ -68,4 +61,8 @@
 
 .submitButton:hover {
   background-color: #218838;
+}
+
+.number-card {
+  display: flex;
 }

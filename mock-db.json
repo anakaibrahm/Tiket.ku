@@ -16,22 +16,16 @@
       "matchDate": "Selasa, 25 Maret 2025",
       "stadium": "Stadion Glora Bung Karno",
       "tickets": [
-        "VIP Barat",
-        "VIP Timur",
-        "Garuda Barat",
-        "Garuda Timur",
-        "Garuda Utara",
-        "Garuda Selatan"
-      ],
-      "ticketsAvailable": {
-        "VIP Barat": { "available": "100", "price": "1.250.000" },
-        "VIP Timur": { "available": "90", "price": "1.250.000" },
-        "Garuda Barat": { "available": "25", "price": "550.000" },
-        "Garuda Timur": { "available": "5", "price": "550.000" },
-        "Garuda Utara": { "available": "10", "price": "350.000" },
-        "Garuda Selatan": { "available": "2", "price": "350.000" }
-      }
+        {
+          "VIP Barat": { "available": "100", "price": "1.250.000" },
+          "VIP Timur": { "available": "90", "price": "1.250.000" },
+          "Garuda Barat": { "available": "25", "price": "550.000" },
+          "Garuda Timur": { "available": "5", "price": "550.000" },
+          "Garuda Utara": { "available": "10", "price": "350.000" },
+          "Garuda Selatan": { "available": "2", "price": "350.000" }
+        }
+      ]
     }
   ],
-  "users": {}
+  "users": []
 }
