@@ -29,6 +29,12 @@
     "left mid right";
 }
 
+.section-6 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .section-8 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -109,14 +115,13 @@
   grid-area: left;
 }
 
+.ticket-price,
 .ticket-available {
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.ticket-price {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100%;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 5px;
 }

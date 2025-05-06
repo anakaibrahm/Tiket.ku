@@ -11,24 +11,17 @@ const ticketOrderFormSchema = z.object({
   }),
   email: errorMessageInput.email(),
   gender: errorMessageOption,
-  NIK: z
-    .string()
-    .nonempty({ message: "field is empty" })
-    .min(16, { message: "angka yang dimasukkan kurang dari 16" })
-    .refine((value) => /\d/.test(value), {
-      message: "nomor induk kependudukan tidak boleh mengandung unsur huruf",
-    }),
-  numberOfTickets: z.string(),
+  numberOfTickets: z.number(),
   tribun: errorMessageOption,
 });
 
 type TicketOrderFormSchema = z.infer<typeof ticketOrderFormSchema>;
 
 export const FormValidation = () => {
-  const { register, handleSubmit, formState, setValue } =
+  const { register, handleSubmit, formState, setValue, watch } =
     useForm<TicketOrderFormSchema>({
       resolver: zodResolver(ticketOrderFormSchema),
     });
 
-  return { register, handleSubmit, formState, setValue };
+  return { register, handleSubmit, formState, setValue, watch };
 };

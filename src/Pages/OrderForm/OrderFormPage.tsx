@@ -1,43 +1,35 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 // import { useParams } from "react-router-dom";
 import styles from "./OrderFormPage.module.css";
-import { MatchData } from "../../hooks/MatchData";
+import { GetData } from "../../api/datas";
 import OrderForm from "./components/OrderForm";
 import { TicketsCounter } from "../../hooks/TicketsCounter";
 import { FormValidation } from "../../hooks/FormValidation";
 
-const TicketOrderPage: React.FC = () => {
-  // const { matchId } = useParams<{
-  //   matchId: string;
-  // }>();
-  // const { matchTicketData } = MatchData(matchId);
-  const { ticketDecrease, ticketIncrease, TicketsCount } = TicketsCounter(1);
-  const { matchScheduleData } = MatchData();
-  const [ticketData, setTicketData] = useState<
-    {
-      value: string;
-      label: string;
-    }[]
-  >([]);
-  const { register, handleSubmit, formState, setValue } = FormValidation();
+const TicketOrderPage = () => {
+  const { register, formState, handleSubmit, setValue } = FormValidation();
+  const { ticketIncrease, ticketDecrease, TicketsCount } = TicketsCounter(1);
+  const { datas, setTickets, tickets } = GetData();
 
   useEffect(() => {
-    setValue("numberOfTickets", TicketsCount.toString());
+    if (datas.length > 0 && tickets.length === 0) {
+      const tribunlist = datas[0].tickets;
+      const keys = Object.keys(tribunlist[0]);
+      const keysmapped = keys.map((key) => ({
+        value: key,
+        label: key,
+      }));
+      setTickets(keysmapped);
+    }
+  }, [datas, setTickets, tickets]);
+
+  useEffect(() => {
+    setValue("numberOfTickets", TicketsCount);
   }, [TicketsCount, setValue]);
 
-  useEffect(() => {
-    if (matchScheduleData.length > 0) {
-      const tickets = matchScheduleData[0].tickets.map((ticket) => ({
-        value: ticket,
-        label: ticket,
-      }));
-      setTicketData(tickets);
-    }
-  }, [matchScheduleData]);
-
-  const onSubmit = handleSubmit((values) => {
+  const onSubmit = handleSubmit((value) => {
     alert(
-      `fullname: ${values.fullName} || email: ${values.email} || gender: ${values.gender} || NIK: ${values.NIK} || NOT: ${values.numberOfTickets} || tribun: ${values.tribun}`
+      `fullname: ${value.fullName} || email: ${value.email} || gender: ${value.gender} || NOT: ${value.numberOfTickets} || tribun: ${value.tribun}`
     );
   });
 
@@ -66,18 +58,22 @@ const TicketOrderPage: React.FC = () => {
           errorMessage={formState.errors.gender?.message}
         />
         <OrderForm
-          index={2}
+          index={3}
           type="email"
           labelName="Email"
           register={register("email")}
           errorMessage={formState.errors.email?.message}
         />
+
         <OrderForm
           index={4}
-          labelName="Nomor Induk Kependudukan"
-          register={register("NIK")}
-          errorMessage={formState.errors.NIK?.message}
+          labelName="Tribun"
+          register={register("tribun")}
+          type="select"
+          options={tickets}
+          errorMessage={formState.errors.tribun?.message}
         />
+
         <OrderForm
           index={5}
           labelName="Jumlah Tiket"
@@ -96,20 +92,11 @@ const TicketOrderPage: React.FC = () => {
             className={buttonClassName("decrease")}
             type="button"
             onClick={ticketDecrease}
+            disabled={TicketsCount <= 1}
           >
             -
           </button>
         </OrderForm>
-
-        <OrderForm
-          index={6}
-          labelName="Tribun"
-          register={register("tribun")}
-          type="select"
-          options={ticketData}
-          errorMessage={formState.errors.tribun?.message}
-        />
-
         <button className={styles["form-button"]} type="submit">
           Submit
         </button>

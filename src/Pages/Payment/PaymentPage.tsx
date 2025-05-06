@@ -14,13 +14,13 @@ const PaymentPage = () => {
 
   return (
     <main className={styles["page-container"]}>
-      <div className={styles["payment-container"]}>
+      <div className={styles["details-container"]}>
         <h3>Rincian Pembayaran</h3>
         <p>Garuda Timur 1x</p>
         <p>Total: $100</p>
       </div>
-      <div className={styles.container}>
-        <form className={styles.form}>
+      <div className={styles["payment-container"]}>
+        <form className={styles["payment-form"]}>
           <div className={styles.formGroup}>
             <label htmlFor="cardNumber">Nomor Kartu:</label>
             <div className={styles.cardInputContainer}>
