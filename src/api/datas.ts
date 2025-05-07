@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "./axios";
+import { UserDatas } from "../types/auth";
 
 interface TeamData {
   name: string;
@@ -18,20 +19,21 @@ interface MatchData {
   tickets: Record<string, { available: string; price: string }>;
 }
 
-export const GetData = () => {
-  const [datas, setDatas] = useState<MatchData[]>([]);
-  const [tickets, setTickets] = useState<
+export const GetDatas = () => {
+  const [matchDatas, setMatchDatas] = useState<MatchData[]>([]);
+  const [ticketOptions, setTicketOptions] = useState<
     {
       value: string;
       label: string;
     }[]
   >([]);
+
   useEffect(() => {
     const getDatas = async () => {
       try {
-        const response = await axiosInstance.get<MatchData[]>("/matchs");
-        const matchs = response.data;
-        setDatas(matchs);
+        const res = await axiosInstance.get<MatchData[]>("/matchs");
+        const data = res.data;
+        setMatchDatas(data);
       } catch (error) {
         console.error(error);
       }
@@ -39,5 +41,43 @@ export const GetData = () => {
     getDatas();
   }, []);
 
-  return { datas, tickets, setTickets };
+  return { matchDatas, ticketOptions, setTicketOptions };
+};
+
+export const PostDatas = () => {
+  const [userFormDatas, setUserFormDatas] = useState<UserDatas>({
+    id: "",
+    fullName: "",
+    email: "",
+    gender: "",
+    numberOfTickets: 0,
+    tribun: "",
+  });
+
+  const postUserDatas = async (data: UserDatas) => {
+    try {
+      await axiosInstance.post<UserDatas>("/users", data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  return { userFormDatas, setUserFormDatas, postUserDatas };
+};
+
+export const GetUsers = () => {
+  const [userDatas, setUserDatas] = useState<UserDatas[]>([]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const res = await axiosInstance.get("/users");
+        const data = res.data;
+        setUserDatas(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getUsers();
+  }, []);
+  return { userDatas };
 };
