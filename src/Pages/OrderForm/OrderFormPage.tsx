@@ -1,36 +1,42 @@
 import { useEffect } from "react";
 // import { useParams } from "react-router-dom";
 import styles from "./OrderFormPage.module.css";
-import { GetData } from "../../api/datas";
+import { GetDatas } from "../../api/datas";
 import OrderForm from "./components/OrderForm";
 import { TicketsCounter } from "../../hooks/TicketsCounter";
 import { FormValidation } from "../../hooks/FormValidation";
+import { PostDatas } from "../../api/datas";
 
 const TicketOrderPage = () => {
   const { register, formState, handleSubmit, setValue } = FormValidation();
   const { ticketIncrease, ticketDecrease, TicketsCount } = TicketsCounter(1);
-  const { datas, setTickets, tickets } = GetData();
+  const { matchDatas, setTicketOptions, ticketOptions } = GetDatas();
+  const { postUserDatas } = PostDatas();
 
   useEffect(() => {
-    if (datas.length > 0 && tickets.length === 0) {
-      const tribunlist = datas[0].tickets;
+    if (matchDatas.length > 0 && ticketOptions.length === 0) {
+      const tribunlist = matchDatas[0].tickets;
       const keys = Object.keys(tribunlist[0]);
       const keysmapped = keys.map((key) => ({
         value: key,
         label: key,
       }));
-      setTickets(keysmapped);
+      setTicketOptions(keysmapped);
     }
-  }, [datas, setTickets, tickets]);
+  }, [matchDatas, setTicketOptions, ticketOptions]);
 
   useEffect(() => {
     setValue("numberOfTickets", TicketsCount);
   }, [TicketsCount, setValue]);
 
-  const onSubmit = handleSubmit((value) => {
-    alert(
-      `fullname: ${value.fullName} || email: ${value.email} || gender: ${value.gender} || NOT: ${value.numberOfTickets} || tribun: ${value.tribun}`
-    );
+  const onSubmit = handleSubmit(async (value) => {
+    try {
+      await postUserDatas(value);
+      alert("done");
+    } catch (error) {
+      console.error(error);
+      alert("gagal");
+    }
   });
 
   const buttonClassName = (buttonType: string) => {
@@ -70,7 +76,7 @@ const TicketOrderPage = () => {
           labelName="Tribun"
           register={register("tribun")}
           type="select"
-          options={tickets}
+          options={ticketOptions}
           errorMessage={formState.errors.tribun?.message}
         />
 

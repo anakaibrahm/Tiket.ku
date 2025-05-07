@@ -1,10 +1,10 @@
 import styles from "./MatchSchedulePage.module.css";
 import MatchScheduleCard from "./components/MatchScheduleCard";
 import { useNavigate } from "react-router-dom";
-import { GetData } from "../../api/datas";
+import { GetDatas } from "../../api/datas";
 
 const MatchSchedulePage = () => {
-  const { datas } = GetData();
+  const { matchDatas } = GetDatas();
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -13,7 +13,7 @@ const MatchSchedulePage = () => {
 
   return (
     <main className={styles["page-container"]}>
-      {datas.map((data) => (
+      {matchDatas.map((data) => (
         <MatchScheduleCard
           key={data.matchId}
           team1={data.team1}

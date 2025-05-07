@@ -1,23 +1,18 @@
-import { useRef } from "react";
-import styles from "./PaymentPage.module.css"; // Import CSS Module
-
+import styles from "./PaymentPage.module.css";
+import { GetUsers } from "../../api/datas";
 const PaymentPage = () => {
-  const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
-
-  const handleChange = (e, index) => {
-    const value = e.target.value.replace(/\D/g, ""); // Hanya ambil angka
-    if (value.length >= 4) {
-      inputRefs[index + 1].current.focus(); // Pindah ke input berikutnya
-    }
-    e.target.value = value.replace(/(\d{4})(?=\d)/g, "$1 "); // Format dengan spasi
-  };
+  const { userDatas } = GetUsers();
 
   return (
     <main className={styles["page-container"]}>
       <div className={styles["details-container"]}>
         <h3>Rincian Pembayaran</h3>
-        <p>Garuda Timur 1x</p>
-        <p>Total: $100</p>
+        {userDatas.map((user) => (
+          <div key={user.id} className={styles["details-content"]}>
+            <p>{user.tribun}</p>
+            <p>{user.numberOfTickets}x</p>
+          </div>
+        ))}
       </div>
       <div className={styles["payment-container"]}>
         <form className={styles["payment-form"]}>
@@ -29,9 +24,7 @@ const PaymentPage = () => {
                   key={index}
                   type="text"
                   maxLength={4}
-                  ref={inputRefs[index]}
-                  onChange={(e) => handleChange(e, index)}
-                  className={styles.input}
+                  className={styles["payment-input"]}
                   placeholder="0000"
                 />
               ))}
@@ -43,16 +36,19 @@ const PaymentPage = () => {
               type="text"
               id="expiryDate"
               required
-              className={styles.input}
+              className={styles["payment-input"]}
             />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="cvv">CVV:</label>
-            <input type="text" id="cvv" required className={styles.input} />
+            <input
+              type="text"
+              id="cvv"
+              required
+              className={styles["payment-input"]}
+            />
           </div>
-          <button type="submit" className={styles.submitButton}>
-            Bayar Sekarang
-          </button>
+          <button className={styles.button}>Bayar Sekarang</button>
         </form>
       </div>
     </main>

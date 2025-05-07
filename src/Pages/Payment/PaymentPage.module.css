@@ -37,30 +37,41 @@
   gap: 10px; /* Jarak antar input */
 }
 
-.input {
+.payment-input {
   width: 100%;
-  padding: 10px; /* Tambahkan padding untuk memberikan ruang */
-  border: 1px solid #ccc; /* Border untuk input */
+  padding: 10px;
+  margin: 8px 0 5px;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px; /* Ukuran font yang sesuai */
-  text-align: center; /* Rata tengah untuk angka */
+  font-size: 16px;
 }
 
 .input::placeholder {
   color: #aaa; /* Warna placeholder */
 }
 
-.submitButton {
-  padding: 10px 15px;
-  background-color: #28a745;
+.button {
+  height: 40px;
+  background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.submitButton:hover {
-  background-color: #218838;
+.button:hover {
+  background-color: #0056b3;
+}
+
+.number-card {
+  display: flex;
+}
+
+.details-content {
+  display: flex;
+  justify-content: space-between;
 }
 
 .number-card {
