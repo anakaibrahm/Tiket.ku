@@ -1,0 +1,70 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+const errorMessageInput = z.string().nonempty({ message: "field is empty" });
+const errorMessageOption = z.string().nonempty({ message: "select an option" });
+
+const ticketOrderFormSchema = z.object({
+  fullName: errorMessageInput.regex(/^[A-Za-z\s]+$/, {
+    message: "Hanya huruf yang diperbolehkan",
+  }),
+  email: errorMessageInput.email(),
+  gender: errorMessageOption,
+  numberOfTickets: z.number(),
+  tribun: errorMessageOption,
+});
+
+type TicketOrderFormSchema = z.infer<typeof ticketOrderFormSchema>;
+
+export const FormUserValidation = () => {
+  const { register, handleSubmit, formState, setValue, watch } =
+    useForm<TicketOrderFormSchema>({
+      resolver: zodResolver(ticketOrderFormSchema),
+    });
+
+  return {
+    userRegister: register,
+    userHandleSubmit: handleSubmit,
+    userFormState: formState,
+    userSetValue: setValue,
+    userWatch: watch,
+  };
+};
+
+//===========================================================================================//
+
+const paymentFormSchema = z.object({
+  nameOnCard: errorMessageInput.regex(/^[A-Za-z\s]+$/, {
+    message: "Hanya huruf yang diperbolehkan",
+  }),
+  cardNumber: errorMessageInput
+    .regex(/^\d+$/, {
+      message: "Hanya angka yang diperbolehkan",
+    })
+
+    .length(4, { message: "Masukkan 4 angka" }),
+  cvv: errorMessageInput.regex(/^\d+$/, {
+    message: "Hanya angka yang diperbolehkan",
+  }),
+  validTHRU: errorMessageInput.regex(/^\d+$/, {
+    message: "Hanya angka yang diperbolehkan",
+  }),
+});
+
+type PaymentFormSchema = z.infer<typeof paymentFormSchema>;
+
+export const PaymentFormValidation = () => {
+  const { register, handleSubmit, formState, setValue, watch } =
+    useForm<PaymentFormSchema>({
+      resolver: zodResolver(paymentFormSchema),
+    });
+
+  return {
+    paymentRegister: register,
+    paymentHandleSubmit: handleSubmit,
+    paymentFormState: formState,
+    paymentSetValue: setValue,
+    paymentWatch: watch,
+  };
+};

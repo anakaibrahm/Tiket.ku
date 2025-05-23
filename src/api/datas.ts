@@ -56,9 +56,11 @@ export const PostDatas = () => {
 
   const postUserDatas = async (data: UserDatas) => {
     try {
-      await axiosInstance.post<UserDatas>("/users", data);
+      const res = await axiosInstance.post<UserDatas>("/users", data);
+      return res.data;
     } catch (error) {
       console.error(error);
+      return null;
     }
   };
   return { userFormDatas, setUserFormDatas, postUserDatas };
