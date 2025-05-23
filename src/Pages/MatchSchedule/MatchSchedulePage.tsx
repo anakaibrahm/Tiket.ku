@@ -1,13 +1,17 @@
 import MatchScheduleCard from "./components/MatchScheduleCard";
 import { useNavigate } from "react-router-dom";
 import { GetDatas } from "../../api/datas";
+import { useParams } from "react-router-dom";
 
 const MatchSchedulePage = () => {
   const { matchDatas } = GetDatas();
   const navigate = useNavigate();
+  const { userId } = useParams();
 
   const handleCardClick = (matchId: string) => {
-    navigate(`/order-form/${matchId}`);
+    if (userId) {
+      navigate(`/payment-form/${userId}?matchId=${matchId}`);
+    }
   };
 
   return (

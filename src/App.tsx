@@ -10,12 +10,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<MatchSchedule />} />
-        <Route path="/order-form/:matchId" element={<OrderForm />} />
-        <Route
-          path="/payment-form/:matchId/:userId"
-          element={<PaymentPage />}
-        />
+        <Route path="/" element={<OrderForm />} />
+        <Route path="/match-schedule/:userId" element={<MatchSchedule />} />
+        <Route path="/payment-form/:userId" element={<PaymentPage />} />
         <Route path="/succes" element={<SuccessPage />} />
       </Routes>
     </Router>

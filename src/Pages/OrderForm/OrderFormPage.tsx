@@ -13,7 +13,6 @@ const TicketOrderPage = () => {
   const { matchDatas, setTicketOptions, ticketOptions } = GetDatas();
   const { postUserDatas } = PostDatas();
   const Navigate = useNavigate();
-  const { matchId } = useParams();
 
   useEffect(() => {
     if (matchDatas.length > 0 && ticketOptions.length === 0) {
@@ -34,7 +33,7 @@ const TicketOrderPage = () => {
         alert("gagal");
         return;
       }
-      Navigate(`/payment-form/${matchId}/${newCustomer.id}`);
+      Navigate(`/match-schedule/${newCustomer.id}`);
     } catch (error) {
       console.error(error);
       alert("gagal");
