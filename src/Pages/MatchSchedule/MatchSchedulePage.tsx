@@ -1,4 +1,3 @@
-import styles from "./MatchSchedulePage.module.css";
 import MatchScheduleCard from "./components/MatchScheduleCard";
 import { useNavigate } from "react-router-dom";
 import { GetDatas } from "../../api/datas";
@@ -7,12 +6,12 @@ const MatchSchedulePage = () => {
   const { matchDatas } = GetDatas();
   const navigate = useNavigate();
 
-  const handleCardClick = () => {
-    navigate(`/order-form`);
+  const handleCardClick = (matchId: string) => {
+    navigate(`/order-form/${matchId}`);
   };
 
   return (
-    <main className={styles["page-container"]}>
+    <main className="h-screen grid grid-cols-3 grid-rows-3 !p-[1.5rem] !gap-[1rem]">
       {matchDatas.map((data) => (
         <MatchScheduleCard
           key={data.matchId}
@@ -22,7 +21,7 @@ const MatchSchedulePage = () => {
           timeZone={data.timeZone}
           matchDate={data.matchDate}
           stadium={data.stadium}
-          onClick={() => handleCardClick()}
+          onClick={() => handleCardClick(data.matchId)}
         />
       ))}
     </main>

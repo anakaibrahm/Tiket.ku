@@ -2,16 +2,18 @@ import { useEffect } from "react";
 // import { useParams } from "react-router-dom";
 import styles from "./OrderFormPage.module.css";
 import { GetDatas } from "../../api/datas";
-import OrderForm from "./components/OrderForm";
-import { TicketsCounter } from "../../hooks/TicketsCounter";
-import { FormValidation } from "../../hooks/FormValidation";
+import { FormUserValidation } from "../../hooks/Validation";
 import { PostDatas } from "../../api/datas";
+import { FormInput, FormSelect, FormTicket } from "./components";
+import { useNavigate, useParams } from "react-router-dom";
 
 const TicketOrderPage = () => {
-  const { register, formState, handleSubmit, setValue } = FormValidation();
-  const { ticketIncrease, ticketDecrease, TicketsCount } = TicketsCounter(1);
+  const { userRegister, userFormState, userHandleSubmit, userSetValue } =
+    FormUserValidation();
   const { matchDatas, setTicketOptions, ticketOptions } = GetDatas();
   const { postUserDatas } = PostDatas();
+  const Navigate = useNavigate();
+  const { matchId } = useParams();
 
   useEffect(() => {
     if (matchDatas.length > 0 && ticketOptions.length === 0) {
@@ -25,84 +27,60 @@ const TicketOrderPage = () => {
     }
   }, [matchDatas, setTicketOptions, ticketOptions]);
 
-  useEffect(() => {
-    setValue("numberOfTickets", TicketsCount);
-  }, [TicketsCount, setValue]);
-
-  const onSubmit = handleSubmit(async (value) => {
+  const onSubmit = userHandleSubmit(async (values) => {
     try {
-      await postUserDatas(value);
-      alert("done");
+      const newCustomer = await postUserDatas(values);
+      if (!newCustomer || !newCustomer.id) {
+        alert("gagal");
+        return;
+      }
+      Navigate(`/payment-form/${matchId}/${newCustomer.id}`);
     } catch (error) {
       console.error(error);
       alert("gagal");
     }
+    // console.log(values);
   });
 
-  const buttonClassName = (buttonType: string) => {
-    return `${styles["button"]} ${styles[`button-${buttonType}`]}`;
-  };
-
   return (
-    <main className={styles["page-container"]}>
+    <main className="flex flex-col items-center justify-center h-screen">
       <form className={styles["form-container"]} onSubmit={onSubmit}>
-        <OrderForm
-          index={1}
-          labelName="Nama Lengkap"
-          register={register("fullName")}
-          errorMessage={formState.errors.fullName?.message}
+        <FormInput
+          labelName="Nama Lengkap:"
+          register={userRegister("fullName")}
+          errorMessage={userFormState.errors.fullName?.message}
         />
-        <OrderForm
-          index={2}
-          type="select"
-          labelName="Jenis Kelamin"
-          register={register("gender")}
+
+        <FormSelect
+          labelName="Jenis Kelamin:"
+          register={userRegister("gender")}
           options={[
             { value: "Laki-laki", label: "Laki-laki" },
             { value: "Perempuan", label: "Perempuan" },
           ]}
-          errorMessage={formState.errors.gender?.message}
-        />
-        <OrderForm
-          index={3}
-          type="email"
-          labelName="Email"
-          register={register("email")}
-          errorMessage={formState.errors.email?.message}
+          errorMessage={userFormState.errors.gender?.message}
         />
 
-        <OrderForm
-          index={4}
-          labelName="Tribun"
-          register={register("tribun")}
-          type="select"
+        <FormInput
+          labelName="Email:"
+          register={userRegister("email")}
+          errorMessage={userFormState.errors.email?.message}
+        />
+
+        <FormSelect
+          labelName="Tribun:"
+          register={userRegister("tribun")}
           options={ticketOptions}
-          errorMessage={formState.errors.tribun?.message}
+          errorMessage={userFormState.errors.tribun?.message}
         />
 
-        <OrderForm
-          index={5}
-          labelName="Jumlah Tiket"
-          register={register("numberOfTickets")}
-          readOnly={true}
-          value={TicketsCount}
-        >
-          <button
-            className={buttonClassName("increase")}
-            type="button"
-            onClick={ticketIncrease}
-          >
-            +
-          </button>
-          <button
-            className={buttonClassName("decrease")}
-            type="button"
-            onClick={ticketDecrease}
-            disabled={TicketsCount <= 1}
-          >
-            -
-          </button>
-        </OrderForm>
+        <FormTicket
+          labelName="Jumlah Tiket:"
+          register={userRegister("numberOfTickets")}
+          errorMessage={userFormState.errors.numberOfTickets?.message}
+          setValue={userSetValue}
+        />
+
         <button className={styles["form-button"]} type="submit">
           Submit
         </button>
