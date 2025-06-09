@@ -47,36 +47,35 @@
   ],
   "users": [
     {
-      "id": "b748",
-      "fullName": "Suki Henry",
-      "email": "vywybynu@mailinator.com",
+      "id": "35cd",
+      "fullName": "Anaka Ibrahim Movic",
+      "email": "anakaibrahim16@gmail.com",
       "gender": "Laki-laki",
-      "numberOfTickets": 1,
-      "tribun": "Garuda Utara"
-    },
-    {
-      "id": "35ea",
-      "fullName": "Mallory Erickson",
-      "email": "meluzati@mailinator.com",
-      "gender": "Perempuan",
       "numberOfTickets": 1,
       "tribun": "VIP Barat"
     },
     {
-      "id": "0f64",
-      "fullName": "Lunea Talley",
-      "email": "guvab@mailinator.com",
+      "id": "dd9b",
+      "fullName": "Carissa Shaista Nafisa",
+      "email": "nafisacarissa@gmail.com",
       "gender": "Perempuan",
       "numberOfTickets": 1,
-      "tribun": "Garuda Timur"
+      "tribun": "VIP Timur"
     },
     {
-      "id": "2e4e",
-      "fullName": "Amity Church",
-      "email": "butyni@mailinator.com",
+      "id": "ca9d",
+      "fullName": "Baim",
+      "email": "baim@gmail.com",
       "gender": "Laki-laki",
       "numberOfTickets": 1,
-      "tribun": "VIP Timur"
+      "tribun": "VIP Barat"
+    },
+    {
+      "id": "ceb1",
+      "fullName": "Anaka Ibrahim Movic",
+      "identityNumber": "1111111111111111",
+      "email": "anakaibrahim16@gmail.com",
+      "gender": "Laki-laki"
     }
   ]
 }

@@ -1,19 +1,24 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import MatchSchedule from "./pages/MatchSchedule/MatchSchedulePage";
+import MatchSchedulePage from "./pages/MatchSchedule/MatchSchedulePage";
 import OrderForm from "./pages/OrderForm/OrderFormPage";
-import "./Styles/Global.css";
 import PaymentPage from "./pages/Payment/PaymentPage";
-import "./app.css";
-import SuccessPage from "./pages/Succes/succesPage";
+// import SuccessPage from "./pages/Succes/succesPage";
+import Ticket from "./pages/Ticket/Ticket";
+import HomePage from "./pages/Home/HomePage";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<OrderForm />} />
-        <Route path="/match-schedule/:userId" element={<MatchSchedule />} />
-        <Route path="/payment-form/:userId" element={<PaymentPage />} />
-        <Route path="/succes" element={<SuccessPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/matchs" element={<MatchSchedulePage />} />
+        <Route path="/matchs/:matchId/form" element={<OrderForm />} />
+        <Route
+          path="/matchs/:matchId/payment/:userId"
+          element={<PaymentPage />}
+        />
+        {/* <Route path="/succes" element={<SuccessPage />} /> */}
+        <Route path="/user/:userId/ticket" element={<Ticket />} />
       </Routes>
     </Router>
   );

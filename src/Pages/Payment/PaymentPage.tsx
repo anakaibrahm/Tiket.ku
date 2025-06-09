@@ -3,31 +3,28 @@ import { GetUsers } from "../../api/datas";
 import { PaymentFormValidation } from "../../hooks/Validation";
 import { CardNumberInput, ExpirationInput, PaymentInput } from "./components";
 import { useNavigate, useParams } from "react-router-dom";
+import TicketCard from "../OrderForm/components/TicketCard";
 const PaymentPage = () => {
   const { userId } = useParams();
-  const { userDatas } = GetUsers();
+  // const { userDatas } = GetUsers();
   const { paymentRegister, paymentHandleSubmit, paymentFormState } =
     PaymentFormValidation();
   const Navigate = useNavigate();
 
-  const user = userDatas.find((u) => u.id === userId);
+  // const user = userDatas.find((u) => u.id === userId);
 
   const onSubmit = paymentHandleSubmit(() => {
-    Navigate("/succes");
+    Navigate(`/user/${userId}/ticket`);
+    // if (user) {
+    // localStorage.setItem("selectedUserId", String(user.id));
+    // }
+    // Navigate("/ticket");
   });
 
-  if (!user) return <div>error</div>;
+  // if (!user) return <div>error</div>;
 
   return (
     <main className={styles["page-container"]}>
-      <section className={styles["details-container"]}>
-        <h3>Rincian Pembayaran</h3>
-        <div className={styles["details-content"]}>
-          <p>{user.tribun}</p>
-          <p>{user.numberOfTickets}x</p>
-        </div>
-      </section>
-
       <section className={styles["payment-container"]}>
         <form className={styles["payment-form"]} onSubmit={onSubmit}>
           <PaymentInput
