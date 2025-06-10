@@ -9,6 +9,11 @@ const ticketOrderFormSchema = z.object({
   fullName: errorMessageInput.regex(/^[A-Za-z\s]+$/, {
     message: "Hanya huruf yang diperbolehkan",
   }),
+  identityNumber: errorMessageInput
+    .regex(/^\d+$/, {
+      message: "Hanya angka yang diperbolehkan",
+    })
+    .min(16, { message: "Masukkan 16 angka" }),
   email: errorMessageInput.email(),
   gender: errorMessageOption,
   numberOfTickets: z.number(),

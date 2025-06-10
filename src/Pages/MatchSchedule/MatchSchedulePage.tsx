@@ -1,13 +1,19 @@
 import MatchScheduleCard from "./components/MatchScheduleCard";
 import { useNavigate } from "react-router-dom";
 import { GetDatas } from "../../api/datas";
+// import { useParams } from "react-router-dom";
 
 const MatchSchedulePage = () => {
   const { matchDatas } = GetDatas();
   const navigate = useNavigate();
+  // const { matchId } = useParams();
 
   const handleCardClick = (matchId: string) => {
-    navigate(`/order-form/${matchId}`);
+    sessionStorage.setItem("selectedMatchId", matchId); // simpan matchId
+    if (matchId) {
+      navigate(`/matchs/${matchId}/form`);
+    }
+
   };
 
   return (

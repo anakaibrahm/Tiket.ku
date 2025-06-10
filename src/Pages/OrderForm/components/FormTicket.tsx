@@ -1,5 +1,4 @@
 import { FormUserTicket } from "../../../types/auth";
-import styles from "../OrderFormPage.module.css";
 import { TicketsCounter } from "../../../hooks/TicketsCounter";
 import { useEffect } from "react";
 
@@ -9,17 +8,15 @@ export const FormTicket: React.FC<FormUserTicket> = ({
   errorMessage,
   setValue,
 }) => {
-  const { ticketIncrease, ticketDecrease, TicketsCount } = TicketsCounter(1);
+  const { ticketIncrease, ticketDecrease, TicketsCount } = TicketsCounter(0);
 
   useEffect(() => {
     setValue("numberOfTickets", TicketsCount);
   }, [TicketsCount, setValue]);
 
   return (
-    <div className={styles["section-5"]}>
-      <label
-        className={`${styles["form-label-5"]} text-base !mb-2 text-gray-700`}
-      >
+    <div className="grid grid-cols-[1.5fr_1fr_1.5fr] gap-x-1.5">
+      <label className="text-base !mb-2 text-gray-700 col-span-3">
         {labelName}
       </label>
       <button
@@ -31,7 +28,7 @@ export const FormTicket: React.FC<FormUserTicket> = ({
       </button>
       <input
         type="text"
-        className={`${styles["form-input-5"]} w-full !p-2.5 border rounded-[4px] text-base`}
+        className="w-full !p-2.5 border rounded-[4px] text-base text-center"
         {...register}
         readOnly
         value={TicketsCount}

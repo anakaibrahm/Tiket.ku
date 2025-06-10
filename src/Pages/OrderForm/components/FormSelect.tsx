@@ -5,14 +5,15 @@ export const FormSelect: React.FC<FormUserSelectInput> = ({
   defaultValue,
   options,
   register,
-  className,
   errorMessage,
 }) => {
   return (
-    <div className={className}>
+    <div>
       <label className="text-base mb-2 text-gray-700">{labelName}</label>
       <select
-        className="w-full !p-2.5 !mt-2 !mb-[5px] border rounded-[4px] text-base"
+        className={`w-full p-2.5 mt-2 mb-[5px] border rounded-xl text-base ${
+          errorMessage ? "border-red-500" : "border-gray-300"
+        }`}
         {...register}
         defaultValue={defaultValue || ""}
       >

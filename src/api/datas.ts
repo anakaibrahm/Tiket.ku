@@ -1,23 +1,7 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "./axios";
 import { UserDatas } from "../types/auth";
-
-interface TeamData {
-  name: string;
-  logo: string;
-}
-
-interface MatchData {
-  id: string;
-  matchId: string;
-  team1: TeamData;
-  team2: TeamData;
-  matchTime: string;
-  timeZone: string;
-  matchDate: string;
-  stadium: string;
-  tickets: Record<string, { available: string; price: string }>;
-}
+import { MatchData } from "../types/auth";
 
 export const GetDatas = () => {
   const [matchDatas, setMatchDatas] = useState<MatchData[]>([]);
@@ -27,21 +11,25 @@ export const GetDatas = () => {
       label: string;
     }[]
   >([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const getDatas = async () => {
+      setLoading(true);
       try {
         const res = await axiosInstance.get<MatchData[]>("/matchs");
         const data = res.data;
         setMatchDatas(data);
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
     getDatas();
   }, []);
 
-  return { matchDatas, ticketOptions, setTicketOptions };
+  return { matchDatas, ticketOptions, setTicketOptions, loading };
 };
 
 export const PostDatas = () => {

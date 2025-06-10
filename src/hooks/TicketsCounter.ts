@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const TicketsCounter = (defaultValue: 1) => {
+export const TicketsCounter = (defaultValue: 0) => {
   const [TicketsCount, setTicketCount] = useState<number>(defaultValue);
 
   const ticketIncrease = () => {
@@ -8,7 +8,7 @@ export const TicketsCounter = (defaultValue: 1) => {
   };
 
   const ticketDecrease = () => {
-    setTicketCount((prevCount) => (prevCount > 1 ? prevCount - 1 : 1));
+    setTicketCount((prevCount) => (prevCount > 1 ? prevCount - 1 : 0));
   };
 
   return { ticketDecrease, ticketIncrease, TicketsCount };
