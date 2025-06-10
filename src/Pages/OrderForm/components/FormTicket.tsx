@@ -1,5 +1,4 @@
 import { FormUserTicket } from "../../../types/auth";
-import styles from "../OrderFormPage.module.css";
 import { TicketsCounter } from "../../../hooks/TicketsCounter";
 import { useEffect } from "react";
 
@@ -9,7 +8,7 @@ export const FormTicket: React.FC<FormUserTicket> = ({
   errorMessage,
   setValue,
 }) => {
-  const { ticketIncrease, ticketDecrease, TicketsCount } = TicketsCounter(1);
+  const { ticketIncrease, ticketDecrease, TicketsCount } = TicketsCounter(0);
 
   useEffect(() => {
     setValue("numberOfTickets", TicketsCount);

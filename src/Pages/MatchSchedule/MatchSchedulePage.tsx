@@ -13,6 +13,7 @@ const MatchSchedulePage = () => {
     if (matchId) {
       navigate(`/matchs/${matchId}/form`);
     }
+
   };
 
   return (
