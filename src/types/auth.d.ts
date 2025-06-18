@@ -1,36 +1,4 @@
-<<<<<<< HEAD
 import { UseFormRegisterReturn } from "react-hook-form";
-
-interface TeamData {
-  name: string;
-  logo: string;
-}
-
-export interface MatchData {
-  id: string;
-  matchId: string;
-  team1: TeamData;
-  team2: TeamData;
-  matchTime: string;
-  timeZone: string;
-  matchDate: string;
-  stadium: string;
-  tickets: Array<Record<string, { available: string; price: string }>>;
-}
-
-=======
-import { ReactNode } from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
-
->>>>>>> origin/main
-export interface UserDatas {
-  id?: string;
-  fullName: string;
-  email: string;
-  gender: string;
-  numberOfTickets: number;
-  tribun: string;
-}
 
 export interface PaymentInput {
   index?: number;
@@ -44,10 +12,6 @@ export interface PaymentInput {
 }
 
 export interface FormUserSelectInput {
-<<<<<<< HEAD
-=======
-  className?: string;
->>>>>>> origin/main
   labelName: string;
   defaultValue?: number;
   options: { value: string | number; label: string }[];
@@ -57,11 +21,6 @@ export interface FormUserSelectInput {
 
 export interface FormUserInput {
   className?: string;
-<<<<<<< HEAD
-=======
-  inputClassName?: string;
-  labelClassName?: string;
->>>>>>> origin/main
   labelName: string;
   register: UseFormRegisterReturn;
   errorMessage?: string;
@@ -72,7 +31,6 @@ export interface FormUserTicket {
   register: UseFormRegisterReturn;
   errorMessage?: string;
   setValue: sting | number;
-<<<<<<< HEAD
 }
 
 // export interface HomeCardSchedule {
@@ -81,6 +39,3 @@ export interface FormUserTicket {
 //   matchTime: string;
 //   stadium: string;
 // }
-=======
-}
->>>>>>> origin/main

@@ -9,23 +9,37 @@ const ticketOrderFormSchema = z.object({
   fullName: errorMessageInput.regex(/^[A-Za-z\s]+$/, {
     message: "Hanya huruf yang diperbolehkan",
   }),
-  identityNumber: errorMessageInput
-    .regex(/^\d+$/, {
-      message: "Hanya angka yang diperbolehkan",
-    })
-    .min(16, { message: "Masukkan 16 angka" }),
+  identityNumber: errorMessageInput.regex(/^\d+$/, {
+    message: "Hanya angka yang diperbolehkan",
+  }),
   email: errorMessageInput.email(),
   gender: errorMessageOption,
-  numberOfTickets: z.number(),
-  tribun: errorMessageOption,
+  tickets: z.record(z.number()),
 });
 
 type TicketOrderFormSchema = z.infer<typeof ticketOrderFormSchema>;
 
 export const FormUserValidation = () => {
-  const { register, handleSubmit, formState, setValue, watch } =
+  // const methods = useForm<TicketOrderFormSchema>({
+  //   resolver: zodResolver(ticketOrderFormSchema),
+  //   defaultValues: {
+  //     fullName: "",
+  //     identityNumber: "",
+  //     email: "",
+  //     gender: "",
+  //     tickets: {},
+  //   }
+  // });
+  const { register, handleSubmit, formState, setValue, watch, control } =
     useForm<TicketOrderFormSchema>({
       resolver: zodResolver(ticketOrderFormSchema),
+      defaultValues: {
+        fullName: "",
+        identityNumber: "",
+        email: "",
+        gender: "",
+        tickets: {},
+      },
     });
 
   return {
@@ -34,6 +48,7 @@ export const FormUserValidation = () => {
     userFormState: formState,
     userSetValue: setValue,
     userWatch: watch,
+    userControl: control,
   };
 };
 
