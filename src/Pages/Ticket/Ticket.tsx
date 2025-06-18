@@ -1,15 +1,16 @@
 import { useEffect } from "react";
-import { GetDatas, GetUsers } from "../../api/datas";
+import { useMatchData } from "../../features/matches/hooks/useMatchData";
+import { useUsers } from "../../features/user/hooks/useUsers";
 
 const Ticket = () => {
-  const { matchDatas } = GetDatas();
-  const { userDatas } = GetUsers();
+  const { userData } = useUsers();
+  const { matches } = useMatchData();
 
   const selectedMatchId = sessionStorage.getItem("selectedMatchId");
   const selectedUserId = sessionStorage.getItem("selectedUserId");
 
-  const match = matchDatas.find((m) => m.matchId === selectedMatchId);
-  const user = userDatas.find((u) => u.id === selectedUserId);
+  const match = matches.find((m) => m.matchId === selectedMatchId);
+  const user = userData.find((u) => u.id === selectedUserId);
 
   // if (loading) {
   //   return (
@@ -70,7 +71,7 @@ const Ticket = () => {
           <div className="flex justify-between items-center border-t border-dashed !pt-4 !mt-4">
             <div>
               <p className="text-gray-600 text-sm">Seat</p>
-              <p className="text-lg font-semibold">{user.tribun}</p>
+              {/* <p className="text-lg font-semibold">{user.tickets}</p> */}
             </div>
             <div className="text-center">
               <p className="text-gray-600 text-sm">Ticket No</p>
