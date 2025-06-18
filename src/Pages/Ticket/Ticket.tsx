@@ -5,7 +5,6 @@ import { useUsers } from "../../features/user/hooks/useUsers";
 const Ticket = () => {
   const { userData } = useUsers();
   const { matches } = useMatchData();
-
   const selectedMatchId = sessionStorage.getItem("selectedMatchId");
   const selectedUserId = sessionStorage.getItem("selectedUserId");
 

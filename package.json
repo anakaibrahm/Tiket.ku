@@ -4,9 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run dev:app\" \"npm run dev:api\"",
-    "dev:app": "vite",
-    "dev:api": "json-server mock-db.json -p 2000",
+    "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
