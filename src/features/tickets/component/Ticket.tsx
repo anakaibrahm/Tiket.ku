@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useMatchData } from "../../features/matches/hooks/useMatchData";
-import { useUsers } from "../../features/user/hooks/useUsers";
+import { useMatchData } from "../../matches/hooks/useMatchData";
+import { useUsers } from "../../user/hooks/useUsers";
 
 const Ticket = () => {
   const { userData } = useUsers();
@@ -10,14 +10,6 @@ const Ticket = () => {
 
   const match = matches.find((m) => m.matchId === selectedMatchId);
   const user = userData.find((u) => u.id === selectedUserId);
-
-  // if (loading) {
-  //   return (
-  //     <div className="min-h-screen flex items-center justify-center">
-  //       Loading...
-  //     </div>
-  //   );
-  // }
 
   useEffect(() => {
     if (match && user) {

@@ -1,25 +1,22 @@
-import MatchScheduleCard from "./components/MatchScheduleCard";
 import { useNavigate } from "react-router-dom";
-import { GetDatas } from "../../api/datas";
-// import { useParams } from "react-router-dom";
+import Card from "../components/Card";
+import { useMatchData } from "../hooks/useMatchData";
 
-const MatchSchedulePage = () => {
-  const { matchDatas } = GetDatas();
+const Matches = () => {
   const navigate = useNavigate();
-  // const { matchId } = useParams();
+  const { matches } = useMatchData();
 
   const handleCardClick = (matchId: string) => {
-    sessionStorage.setItem("selectedMatchId", matchId); // simpan matchId
+    sessionStorage.setItem("selectedMatchId", matchId);
     if (matchId) {
       navigate(`/matchs/${matchId}/form`);
     }
-
   };
 
   return (
-    <main className="h-screen grid grid-cols-3 grid-rows-3 !p-[1.5rem] !gap-[1rem]">
-      {matchDatas.map((data) => (
-        <MatchScheduleCard
+    <main className="h-screen grid grid-cols-3 grid-rows-3 p-[1.5rem] gap-[1rem]">
+      {matches.map((data) => (
+        <Card
           key={data.matchId}
           team1={data.team1}
           team2={data.team2}
@@ -34,4 +31,4 @@ const MatchSchedulePage = () => {
   );
 };
 
-export default MatchSchedulePage;
+export default Matches;

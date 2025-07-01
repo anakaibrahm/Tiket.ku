@@ -47,15 +47,27 @@
   ],
   "users": [
     {
-      "id": "9c05",
+      "id": "e154",
       "fullName": "Anaka Ibrahim Movic",
       "identityNumber": "24367001",
       "email": "anakaibrahim16@gmail.com",
       "gender": "Laki-laki",
       "tickets": {
-        "VIP": 0,
-        "Reguler": 0
+        "VIP Barat": 1,
+        "VIP Timur": 1,
+        "Garuda Barat": 1,
+        "Garuda Timur": 1,
+        "Garuda Utara": 1,
+        "Garuda Selatan": 1
       }
+    },
+    {
+      "id": "eefe",
+      "fullName": "Josiah Branch",
+      "identityNumber": "24367001",
+      "email": "xezijo@mailinator.com",
+      "gender": "Laki-laki",
+      "tickets": {}
     }
   ]
 }

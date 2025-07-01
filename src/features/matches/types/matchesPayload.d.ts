@@ -1,13 +1,13 @@
-interface Team {
+interface TeamPayload {
   name: string;
   logo: string;
 }
 
-export interface Match {
+export interface MatchPayload {
   id: string;
   matchId: string;
-  team1: TeamData;
-  team2: TeamData;
+  team1: TeamPayload;
+  team2: TeamPayload;
   matchTime: string;
   timeZone: string;
   matchDate: string;
