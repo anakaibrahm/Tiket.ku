@@ -1,7 +1,7 @@
-import { api } from "../../../lib/apiClient";
-import { Match } from "../types/matchesPayload";
+import { API } from "../../../lib/apiClient";
+import { MatchPayload } from "../types/matchesPayload";
 
-export const getMatches = async (): Promise<Match[]> => {
-  const response = await api.get<Match[]>("/matchs");
+export const getMatches = async (): Promise<MatchPayload[]> => {
+  const response = await API.get<MatchPayload[]>("/matchs");
   return response.data;
 };
