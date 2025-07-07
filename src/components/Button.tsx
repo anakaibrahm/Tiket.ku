@@ -1,18 +1,18 @@
 import { ButtonProps } from "./componentsProps";
 
 export const Button: React.FC<ButtonProps> = ({
-  children,
+  label,
   onClick,
   className,
-  type,
+  type = "button",
 }) => {
   return (
     <button
-      className={`bg-blue-500 p-2.5 w-full text-white rounded-xl cursor-pointer hover:bg-blue-600 transition-all mx-auto ${className}`}
+      className={`cursor-pointer transition-all leading-tight ${className}`}
       type={type}
       onClick={onClick}
     >
-      {children}
+      {label}
     </button>
   );
 };
