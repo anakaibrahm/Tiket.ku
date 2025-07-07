@@ -1,6 +1,6 @@
-import { TeamSectionProps } from "./matchesProps";
+import { TeamPayload } from "../types/matchesPayload.types";
 
-export const TeamSection = ({ name, logo }: TeamSectionProps) => (
+export const TeamSection = ({ name, logo }: TeamPayload) => (
   <section className="flex justify-center items-center flex-col gap-2 bg-gray-400 p-2 cursor-pointer">
     <h2 className="uppercase text-2xl font-bold text-white">{name}</h2>
     <div className="h-35 w-35 flex items-center justify-center">

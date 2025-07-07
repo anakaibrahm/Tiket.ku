@@ -1,6 +1,47 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-
+/* @import "tailwindcss/preflight"; */
 @import "tailwindcss";
+
+@theme {
+  --color-aquamarine: oklch(91.693% 0.12524 177.03);
+  --color-aquamarine-50: oklch(100% 0 none);
+  --color-aquamarine-100: oklch(100% 0 none);
+  --color-aquamarine-200: oklch(99.127% 0.01184 184.09);
+  --color-aquamarine-300: oklch(96.186% 0.05376 180.49);
+  --color-aquamarine-400: oklch(93.67% 0.09255 178.85);
+  --color-aquamarine-500: oklch(91.693% 0.12524 177.03);
+  --color-aquamarine-600: oklch(89.887% 0.15727 174.15);
+  --color-aquamarine-700: oklch(89.012% 0.1746 170.43);
+  --color-aquamarine-800: oklch(76.53% 0.15221 169.57);
+  --color-aquamarine-900: oklch(60.738% 0.12045 169.84);
+  --color-aquamarine-950: oklch(52.454% 0.10378 170.06);
+
+  --color-ecstasy: oklch(70.487% 0.18672 47.604);
+  --color-ecstasy-50: oklch(92.356% 0.04522 57.493);
+  --color-ecstasy-100: oklch(89.526% 0.06193 57.367);
+  --color-ecstasy-200: oklch(84.144% 0.09654 56.275);
+  --color-ecstasy-300: oklch(79.112% 0.12987 54.397);
+  --color-ecstasy-400: oklch(74.51% 0.16108 51.973);
+  --color-ecstasy-500: oklch(70.487% 0.18672 47.604);
+  --color-ecstasy-600: oklch(60.979% 0.17085 45.611);
+  --color-ecstasy-700: oklch(49.022% 0.13426 46.673);
+  --color-ecstasy-800: oklch(36.298% 0.09494 48.816);
+  --color-ecstasy-900: oklch(22.158% 0.05268 54.981);
+  --color-ecstasy-950: oklch(14.602% 0.03107 73.213);
+
+  --color-te-papa-green: oklch(32.739% 0.03687 179.01);
+  --color-te-papa-green-50: oklch(69.962% 0.08063 178.83);
+  --color-te-papa-green-100: oklch(67.165% 0.08482 178.35);
+  --color-te-papa-green-200: oklch(59.072% 0.07374 178.74);
+  --color-te-papa-green-300: oklch(50.738% 0.06143 179.13);
+  --color-te-papa-green-400: oklch(41.963% 0.04983 178.21);
+  --color-te-papa-green-500: oklch(32.739% 0.03687 179.01);
+  --color-te-papa-green-600: oklch(18.88% 0.01653 181.81);
+  --color-te-papa-green-700: oklch(0% 0 none);
+  --color-te-papa-green-800: oklch(0% 0 none);
+  --color-te-papa-green-900: oklch(0% 0 none);
+  --color-te-papa-green-950: oklch(0% 0 none);
+}
 
 :root {
   font-family: "Montserrat", sans-serif;

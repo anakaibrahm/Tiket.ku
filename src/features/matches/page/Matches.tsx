@@ -18,8 +18,8 @@ const Matches = () => {
       {matches.map((data) => (
         <Card
           key={data.matchId}
-          team1={data.team1}
-          team2={data.team2}
+          teamHome={data.teamHome}
+          teamAway={data.teamAway}
           matchTime={data.matchTime}
           timeZone={data.timeZone}
           matchDate={data.matchDate}

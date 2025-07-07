@@ -1,7 +1,7 @@
 // src/features/match/hooks/useMatchData.ts
 import { useEffect, useState } from "react";
 import { getMatches } from "../service/matchService";
-import { MatchPayload } from "../types/matchesPayload";
+import { MatchPayload } from "../types/matchesPayload.types";
 
 export const useMatchData = () => {
   const [matches, setMatches] = useState<MatchPayload[]>([]);
