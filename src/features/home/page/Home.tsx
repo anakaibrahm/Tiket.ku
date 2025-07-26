@@ -6,7 +6,7 @@ import { Navbar } from "../../../components/Navbar";
 import { supabase } from "../../../lib/supabase";
 import AuthContainer from "../../auth/components/AuthContainer";
 import { useMatchData } from "../../matches/hooks/useMatchData";
-// import supabase from "../../../lib/supabase";
+
 const HomePage = () => {
   const [authType, setAuthType] = useState<"login" | "signup">("login");
   const [isAuthOpen, setIsAuthOpen] = useState(false);

@@ -1,5 +1,6 @@
 import { MatchPayload } from "../types/matchesPayload";
 import { TeamSection } from "./TeamSection";
+import { MatchCardProps } from "./matchesProps";
 
 type MatchCardProps = Omit<MatchPayload, "id" | "matchId" | "tickets"> & {
   onClick?: () => void;
