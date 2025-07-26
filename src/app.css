@@ -43,6 +43,50 @@
   --color-te-papa-green-950: oklch(0% 0 none);
 }
 
+@layer components {
+  .glassmorphism-base {
+    @apply bg-aquamarine-500/15 border-aquamarine-500/45 backdrop-blur-[12.5px];
+  }
+  .glassmorphism-left {
+    @apply glassmorphism-base border-t border-b border-l rounded-l-2xl;
+  }
+
+  .glassmorphism-right {
+    @apply glassmorphism-base border-t border-b border-r rounded-r-2xl;
+  }
+
+  .glassmorphism {
+    @apply glassmorphism-base border rounded-2xl;
+  }
+
+  /* .glassmorphism-left {
+    background-color: rgba(122, 255, 226, 0.15);
+    border-color: rgba(122, 255, 226, 0.45);
+    border-style: solid;
+    border-width: 1px 0 1px 1px;
+    backdrop-filter: blur(12.5px);
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+  }
+
+  .glassmorphism-right {
+    background-color: rgba(122, 255, 226, 0.15);
+    border-color: rgba(122, 255, 226, 0.45);
+    border-style: solid;
+    border-width: 1px 1px 1px 0;
+    backdrop-filter: blur(12.5px);
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+
+  .glassmorphism {
+    background-color: rgba(122, 255, 226, 0.15);
+    border: 1px rgba(122, 255, 226, 0.45) solid;
+    backdrop-filter: blur(12.5px);
+    border-radius: 16px;
+  } */
+}
+
 :root {
   font-family: "Montserrat", sans-serif;
 }

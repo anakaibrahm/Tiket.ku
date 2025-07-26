@@ -71,9 +71,7 @@ const Payment = () => {
             register={register("validTHRU")}
           />
 
-          <Button onClick={onSubmit} type="submit">
-            Bayar Sekarang
-          </Button>
+          <Button onClick={onSubmit} type="submit" label="Bayar Sekarang" />
         </FormField>
       </form>
     </main>

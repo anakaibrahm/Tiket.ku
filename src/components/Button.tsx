@@ -1,11 +1,15 @@
-import { ButtonProps } from "./componentsProps";
-
-export const Button: React.FC<ButtonProps> = ({
+interface ButtonProps {
+  label: string;
+  onClick?: () => void;
+  className?: string;
+  type?: "button" | "submit" | "reset";
+}
+export const Button = ({
   label,
   onClick,
   className,
   type = "button",
-}) => {
+}: ButtonProps) => {
   return (
     <button
       className={`cursor-pointer transition-all leading-tight ${className}`}

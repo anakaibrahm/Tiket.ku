@@ -1,7 +1,7 @@
 // import { GetDatas } from "../../../api/datas";
 import React from "react";
 import { Control } from "react-hook-form";
-import { UserSchema } from "../../../features/users/schemas/userSchema";
+import { UserSchema } from "../schema/userSchema";
 
 interface TicketCardProps {
   name: string;
