@@ -16,16 +16,7 @@ const Matches = () => {
   return (
     <main className="h-screen grid grid-cols-3 grid-rows-3 p-[1.5rem] gap-[1rem]">
       {matches.map((data) => (
-        <Card
-          key={data.matchId}
-          teamHome={data.teamHome}
-          teamAway={data.teamAway}
-          matchTime={data.matchTime}
-          timeZone={data.timeZone}
-          matchDate={data.matchDate}
-          stadium={data.stadium}
-          onClick={() => handleCardClick(data.matchId)}
-        />
+        <Card {...data} onClick={() => handleCardClick(data.match_id)} />
       ))}
     </main>
   );

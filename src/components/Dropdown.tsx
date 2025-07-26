@@ -1,4 +1,12 @@
-import { DropDownProps } from "./componentsProps";
+import { UseFormRegisterReturn } from "react-hook-form";
+
+interface DropDownProps {
+  labelName: string;
+  defaultValue?: number;
+  options: { value: string | number; label: string }[];
+  register: UseFormRegisterReturn;
+  errorMessage?: string;
+}
 
 export const Dropdown: React.FC<DropDownProps> = ({
   labelName,

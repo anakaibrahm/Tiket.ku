@@ -1,5 +1,5 @@
 import vs from "../../../assets/icons/VS.svg";
-import { TeamPayload } from "../../matches/types/matchesPayload.types";
+import { TeamPayload } from "../../matches/types/matchesPayload";
 
 interface ScheduleCardProps {
   teamHome: TeamPayload;
@@ -7,7 +7,7 @@ interface ScheduleCardProps {
 }
 const ScheduleCard: React.FC<ScheduleCardProps> = ({ teamHome, teamAway }) => {
   return (
-    <div className="w-[90%] grid grid-cols-[2fr_1fr_2fr] bg-aquamarine-300 h-[75px] my-10 relative overflow-visible">
+    <div className="w-[90%] grid grid-cols-[2fr_1fr_2fr] bg-aquamarine-300 h-[70px] my-10 relative overflow-visible">
       {/* KIRI */}
       <div className="relative flex items-center justify-center pl-4">
         <img

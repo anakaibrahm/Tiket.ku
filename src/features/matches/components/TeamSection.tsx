@@ -1,4 +1,4 @@
-import { TeamPayload } from "../types/matchesPayload.types";
+import { TeamPayload } from "../types/matchesPayload";
 
 export const TeamSection = ({ name, logo }: TeamPayload) => (
   <section className="flex justify-center items-center flex-col gap-2 bg-gray-400 p-2 cursor-pointer">
